@@ -62,3 +62,19 @@ png_cicp_editor add --preset display-p3 macbeth-display-p3.png
 ```
 
 ![display p3](./img/macbeth-display-p3.png)
+
+```bash
+~/macbeth$ pngcheck -c -v macbeth-display-p3.png
+File: macbeth-display-p3.png (416 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    220 x 148 image, 8-bit palette, non-interlaced
+  chunk cICP at offset 0x00025, length 4
+   Display P3
+    White x = 0.3127 y = 0.329,  Red x = 0.68 y = 0.32
+    Green x = 0.265 y = 0.69,  Blue x = 0.15 y = 0.06
+    Full range
+  chunk PLTE at offset 0x00035, length 75: 25 palette entries
+  chunk IDAT at offset 0x0008c, length 256
+    zlib: deflated, 32K window, default compression
+  chunk IEND at offset 0x00198, length 0
+  ```
