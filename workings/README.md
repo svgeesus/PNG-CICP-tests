@@ -38,3 +38,25 @@ Converted [from sRGB](../README.md) to destination [using color.js](https://colo
 <td>black 2<br>color(display-p3 0.19608 0.19608 0.19608)<br>[50, 50, 50]</td>
 </tr>
 </table>
+
+## Making the images
+
+A quick and dirty [C program](./macbeth.c) loops over the patch color data
+(from either [srgb.h](./srgb.h) or [display-p3.h](display-p3.h))
+and spits out an ascii PPM file.
+
+This is then converted to PNG:
+
+```bash
+pnmtopng -verbose tmp.ppm > tmp.png
+```
+
+![srgb](./img/macbeth-srgb.png)
+
+For the display-p3 image, a `cICP` chunk is added
+
+```bash
+png_cicp_editor add --preset display-p3 macbeth-display-p3.png
+```
+
+![display p3](./img/macbeth-display-p3.png)
