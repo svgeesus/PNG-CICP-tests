@@ -55,7 +55,7 @@ pnmtopng -verbose tmp.ppm > tmp.png
 ![srgb](./img/macbeth-srgb.png)
 
 For the display-p3 image, a `cICP` chunk is added with
-[`png_cicp_editor](https://github.com/ProgramMax/png_cicp_editor):
+[`png_cicp_editor`](https://github.com/ProgramMax/png_cicp_editor):
 
 ```bash
 png_cicp_editor add --preset display-p3 macbeth-display-p3.png
