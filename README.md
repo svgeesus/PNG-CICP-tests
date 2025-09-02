@@ -45,7 +45,7 @@ The sRGB values below are rounded to 8-bit (0 to 255) precision and given as dec
 </tr>
 </table>
 
-![MacBeth sRGB](./img/macbeth-sRGB.png)
+![Macbeth sRGB](./img/macbeth-sRGB.png)
 
 The patch values are then converted to each tested CICP-labelled color space
 using [color.js](https://colorjs.io/) (see [workings](workings/README.md)),
