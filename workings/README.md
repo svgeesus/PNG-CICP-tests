@@ -43,9 +43,10 @@ Converted [from sRGB](../README.md) to destination [using color.js](https://colo
 
 A quick and dirty [C program](./macbeth.c) loops over the patch color data
 (from either [srgb.h](./srgb.h) or [display-p3.h](display-p3.h))
-and spits out an ascii PPM file.
+and spits out an [ascii PPM file](https://netpbm.sourceforge.net/doc/ppm.html).
 
-This is then converted to PNG:
+This is then converted to PNG with
+[pnmtopng](https://netpbm.sourceforge.net/doc/pnmtopng.html):
 
 ```bash
 pnmtopng -verbose tmp.ppm > tmp.png
@@ -53,7 +54,8 @@ pnmtopng -verbose tmp.ppm > tmp.png
 
 ![srgb](./img/macbeth-srgb.png)
 
-For the display-p3 image, a `cICP` chunk is added
+For the display-p3 image, a `cICP` chunk is added with
+[`png_cicp_editor](https://github.com/ProgramMax/png_cicp_editor):
 
 ```bash
 png_cicp_editor add --preset display-p3 macbeth-display-p3.png
