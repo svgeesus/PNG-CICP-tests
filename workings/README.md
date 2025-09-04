@@ -2,7 +2,7 @@
 
 Converted [from sRGB](../README.md) to destination [using color.js](https://colorjs.io/apps/convert/?color=rgb(199%20148%20129)&precision=5) and coordinates rounded to [0,255].
 
-## Display p3
+### Display p3
 
 <table>
 <tr>
@@ -36,6 +36,43 @@ Converted [from sRGB](../README.md) to destination [using color.js](https://colo
 <td>neutral 5<br>color(display-p3 0.47129 0.47438 0.47444)<br>[120, 121, 121]</td>
 <td>neutral 3.5<br>color(display-p3 0.32619 0.32928 0.33292)<br>[83, 84, 85]</td>
 <td>black 2<br>color(display-p3 0.19608 0.19608 0.19608)<br>[50, 50, 50]</td>
+</tr>
+</table>
+
+### BT.2020
+
+<table>
+<tr>
+<td>dark skin<br>color(rec2020 0.44316 0.367539 0.310977)</td>
+<td>light skin<br>color(rec2020 0.727066 0.617365 0.544058)</td>
+<td>blue sky<br>color(rec2020 0.447863 0.504076 0.62293)</td>
+<td>foliage<br>color(rec2020 0.405127 0.447781 0.314302)</td>
+<td>blue flower</br>color(rec2020 0.54548 0.53461 0.691007)</td>
+<td>bluish green<br>color(rec2020 0.568323 0.740283 0.694322)</td>
+</tr>
+<tr>
+<td>orange<br>color(rec2020 0.767823 0.548508 0.292659)</td>
+<td>purplish blue<br>color(rec2020 0.365879 0.394032 0.65414)</td>
+<td>moderate red<br>color(rec2020 0.680321 0.417335 0.419505)</td>
+<td>purple<br>color(rec2020 0.36246 0.285054 0.426803)</td>
+<td>yellow green</br>color(rec2020 0.673482 0.744424 0.374998)</td>
+<td>orange yellow<br>color(rec2020 0.820068 0.673801 0.316171)</td>
+</tr>
+<tr>
+<td>blue<br>color(rec2020 0.26485 0.28464 0.575819)</td>
+<td>green<br>color(rec2020 0.434971 0.585686 0.360921)</td>
+<td>red<br>color(rec2020 0.609044 0.305093 0.275929)</td>
+<td>yellow<br>color(rec2020 0.880715 0.80344 0.334695)</td>
+<td>magenta</br>color(rec2020 0.665847 0.415908 0.593338)</td>
+<td>desat_cyan<br>color(rec2020 0.370806 0.53179 0.634393)</td>
+</tr>
+<tr>
+<td>white 9.5<br>color(rec2020 0.962034 0.96262 0.946207)</td>
+<td>neutral 8<br>color(rec2020 0.796946 0.799019 0.799214)</td>
+<td>neutral 6.5<br>color(rec2020 0.648261 0.650334 0.650529)</td>
+<td>neutral 5<br>color(rec2020 0.499577 0.501649 0.501844)</td>
+<td>neutral 3.5<br>color(rec2020 0.362209 0.364159 0.367643)</td>
+<td>black 2<br>color(rec2020 0.237989 0.237989 0.237989)</td>
 </tr>
 </table>
 
