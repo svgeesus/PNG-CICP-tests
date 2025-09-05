@@ -1,8 +1,8 @@
 # Colorspace conversions
 
-Converted [from sRGB](../README.md) to destination [using color.js](https://colorjs.io/apps/convert/?color=rgb(199%20148%20129)&precision=5) and coordinates rounded to [0,255].
-
 ### Display p3
+
+Converted [from sRGB](../README.md) to display p3 [using color.js](https://colorjs.io/apps/convert/?color=rgb(199%20148%20129)&precision=5) and coordinates rounded to [0,255].
 
 <table>
 <tr>
@@ -40,6 +40,8 @@ Converted [from sRGB](../README.md) to destination [using color.js](https://colo
 </table>
 
 ### BT.2020
+
+Converted using color.js; quantization to 10,12 or 16 bit integer values is handled by the converter.
 
 <table>
 <tr>
@@ -89,7 +91,11 @@ This is then converted to PNG with
 pnmtopng -verbose tmp.ppm > tmp.png
 ```
 
+### sRGB 8-bit
+
 ![srgb](./img/macbeth-srgb.png)
+
+### Display P3 8-bit
 
 For the display-p3 image, a `cICP` chunk is added with
 [`png_cicp_editor`](https://github.com/ProgramMax/png_cicp_editor):
@@ -115,3 +121,37 @@ File: macbeth-display-p3.png (416 bytes)
     zlib: deflated, 32K window, default compression
   chunk IEND at offset 0x00198, length 0
   ```
+
+### BT.2020 12-bit
+
+For the BT.2020 image, a [_remarkably similar_ program](./macbeth-16.c) (copy and paste FTW)
+loops over floating-point patch color data, quantizing it to 10, 12, or 16 bits.
+It then loops over the quantized data, as before, writing a PPM file.
+
+For PNG, what we want is 16-bit data (because PNG does not directly support 12-bit images) and an `sBIT` chunk, which is added with TweakPNG. As before, the `cICP` chunk is then added:
+
+```bash
+png_cicp_editor add --preset bt.2020-12-bit macbeth-bt2020.png
+```
+
+![bt.2020](./img/macbeth-bt2020.png)
+
+Currently (5 Sept 2025) neither Firefox nor Chrome displays this image correctly. It looks washed out, as this value of the `cICP` chunk is not being understood and the image data is treated as sRGB.
+
+```bash
+:~/macbeth$ pngcheck -c -v macbeth-bt2020.png
+File: macbeth-bt2020.png (1179 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    220 x 148 image, 48-bit RGB, non-interlaced
+  chunk sBIT at offset 0x00025, length 3
+    red = 12 = 0x0c, green = 12 = 0x0c, blue = 12 = 0x0c
+  chunk cICP at offset 0x00034, length 4
+    Rec. ITU-R BT.2020-2 (12-bit system)
+    White x = 0.3127 y = 0.329,  Red x = 0.708 y = 0.292
+    Green x = 0.17 y = 0.797,  Blue x = 0.131 y = 0.046
+    Full range
+  chunk IDAT at offset 0x00044, length 1091
+    zlib: deflated, 32K window, default compression
+  chunk IEND at offset 0x00493, length 0
+No errors detected in macbeth-bt2020.png (5 chunks, 99.4% compression).
+```
