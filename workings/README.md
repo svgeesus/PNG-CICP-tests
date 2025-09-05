@@ -138,6 +138,9 @@ png_cicp_editor add --preset bt.2020-12-bit macbeth-bt2020.png
 
 Currently (5 Sept 2025) neither Firefox nor Chrome displays this image correctly. It looks washed out, as this value of the `cICP` chunk is not being understood and the image data is treated as sRGB.
 
+ - [Firefox Bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1987176)
+ - [Chromium bug report](https://issues.chromium.org/issues/443261868)
+
 ```bash
 :~/macbeth$ pngcheck -c -v macbeth-bt2020.png
 File: macbeth-bt2020.png (1179 bytes)
