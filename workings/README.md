@@ -93,7 +93,71 @@ pnmtopng -verbose tmp.ppm > tmp.png
 
 ### sRGB 8-bit
 
+There are three versions of the sRGB image -
+the image data is the same, only the tagging differs.
+
+The first, `macbeth-untagged-srgb.png`, has no colorspace tagging at all.
+CSS Color 4 [says](https://drafts.csswg.org/css-color-4/#untagged) that
+untagged images must be treated as being sRGB.
+
+![srgb untagged](./img/macbeth-untagged-srgb.png)
+
+```bash
+File: macbeth-untagged-srgb.png (400 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    220 x 148 image, 8-bit palette, non-interlaced
+  chunk PLTE at offset 0x00025, length 75: 25 palette entries
+  chunk IDAT at offset 0x0007c, length 256
+    zlib: deflated, 32K window, default compression
+  chunk IEND at offset 0x00188, length 0
+No errors detected in macbeth-untagged-srgb.png (4 chunks, 98.8% compression).
+```
+
+The second, `macbeth-srgb-chunk`,
+has an [`sRGB` chunk]()
+which was added with [TweakPNG](https://entropymine.com/jason/tweakpng/)
+
+![srgb](./img/macbeth-srgb-chunk.png)
+
+```bash
+File: macbeth-srgb-chunk.png (413 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    220 x 148 image, 8-bit palette, non-interlaced
+  chunk sRGB at offset 0x00025, length 1
+    rendering intent = perceptual
+  chunk PLTE at offset 0x00032, length 75: 25 palette entries
+  chunk IDAT at offset 0x00089, length 256
+    zlib: deflated, 32K window, default compression
+  chunk IEND at offset 0x00195, length 0
+No errors detected in macbeth-srgb-chunk.png (5 chunks, 98.7% compression).
+```
+
+The third, `macbeth-srgb.png`,
+has a `cICP` chunk
+which was added with
+[`png_cicp_editor`](https://github.com/ProgramMax/png_cicp_editor):
+
+```bash
+png_cicp_editor add --preset srgb macbeth-display-p3.png
+```
+
 ![srgb](./img/macbeth-srgb.png)
+
+```bash
+File: macbeth-srgb.png (416 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    220 x 148 image, 8-bit palette, non-interlaced
+  chunk cICP at offset 0x00025, length 4
+   IEC 61966-2-1 sRGB
+    White x = 0.3127 y = 0.329,  Red x = 0.64 y = 0.33
+    Green x = 0.3 y = 0.6,  Blue x = 0.15 y = 0.06
+    Full range
+  chunk PLTE at offset 0x00035, length 75: 25 palette entries
+  chunk IDAT at offset 0x0008c, length 256
+    zlib: deflated, 32K window, default compression
+  chunk IEND at offset 0x00198, length 0
+No errors detected in macbeth-srgb.png (5 chunks, 98.7% compression).
+```
 
 ### Display P3 8-bit
 
