@@ -184,6 +184,7 @@ File: macbeth-display-p3.png (416 bytes)
   chunk IDAT at offset 0x0008c, length 256
     zlib: deflated, 32K window, default compression
   chunk IEND at offset 0x00198, length 0
+  No errors detected in macbeth-display-p3.png (5 chunks, 98.7% compression).
   ```
 
 ### BT.2020 12-bit
